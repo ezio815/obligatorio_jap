@@ -41,19 +41,21 @@
 
 <body class="text-center">
   <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-        <input type="email" placeholder="E-mail" name="correo" id="correo" minlength="7" maxlength="20" required><br>
-        <input type="password" placeholder="Contraseña" name="contrasenia" id="contrasenia" minlength="4" maxlength="20" required><br>
-        <input type="checkbox" name="recordar" id="recordar" value="recordar">
-        <label for="recordar">Recordarme</label><br>
-        <button id="login">Iniciar Sesión</button><br>
+    <!--<div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
         
-        <a href="">¿No tienes una cuenta?</a>
-        <!--<h4 class="alert-heading">¡A trabajar! :)</h4>
+        <h4 class="alert-heading">¡A trabajar! :)</h4>
         <p>Esta sección corresponde a: Entrega 1 (Fecha de entrega: 08/08/2021).</p>
         <hr>
-        <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>-->
-    </div>
+        <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+    </div>-->
+    <input type="email" placeholder="E-mail" name="correo" id="correo" minlength="7" maxlength="20" required><br>
+    <input type="password" placeholder="Contraseña" name="contrasenia" id="contrasenia" minlength="4" maxlength="20" required><br>
+    <input type="checkbox" name="recordar" id="recordar" value="recordar">
+    <label for="recordar">Recordarme</label><br>
+    <button id="login">Iniciar Sesión</button><br>
+        
+    <a href="">¿No tienes una cuenta?</a>
+    <a href="#" id="volver">Volver</a>
     <div class="g-signin2" data-onsuccess="onSuccess" data-gapiscan="true" data-onload="true"></div>
   </div>
 
