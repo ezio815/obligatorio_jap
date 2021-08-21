@@ -44,4 +44,21 @@ var getJSONData = function(url){
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
+  localStorage.removeItem("origen");
+  let login = document.getElementById("log in");
+  if(localStorage.getItem("mail") != null || sessionStorage.getItem("mail") != null){
+    login.href = "#";
+    login.textContent = "Cerrar Sesion";
+    login.addEventListener("click", () => {
+      localStorage.removeItem("mail");
+      sessionStorage.removeItem("mail");
+      location.reload();
+    });
+  }
+  else
+  {
+    login.addEventListener("click", () => {
+      localStorage.setItem("origen", location.href)
+    });
+  }
 });
