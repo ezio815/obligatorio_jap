@@ -6,8 +6,8 @@ var currentSortCriteria = undefined;
 var minCount = undefined;
 var maxCount = undefined;
 
-function sortItems(criteria, array){
-    let result = [];
+function sortItems(criteria, array, type){
+    let result = [];  
     if (criteria === ORDER_ASC_BY_NAME)
     {
         result = array.sort(function(a, b) {
@@ -23,9 +23,16 @@ function sortItems(criteria, array){
         });
     }else if (criteria === ORDER_BY_PROD_COUNT){
         result = array.sort(function(a, b) {
-            let aCount = parseInt(a.productCount);
-            let bCount = parseInt(b.productCount);
-
+            let aCount, bCount;
+            if (type === "category"){
+                aCount = parseInt(a.productCount);
+                bCount = parseInt(b.productCount);
+            }
+            if (type === "product"){
+                aCount = parseInt(a.soldCount);
+                bCount = parseInt(b.soldCount);
+            }
+            
             if ( aCount > bCount ){ return -1; }
             if ( aCount < bCount ){ return 1; }
             return 0;
@@ -35,21 +42,15 @@ function sortItems(criteria, array){
     return result;
 }
 
-function sortAndShowItems(sortCriteria, itemsArray, type){
+function sortAndShowItems(sortCriteria, type, itemsArray){
     currentSortCriteria = sortCriteria;
 
     if(itemsArray != undefined){
         currentItemsArray = itemsArray;
     }
 
-    currentItemsArray = sortItems(currentSortCriteria, currentItemsArray);
-
-    //Muestro las categorías ordenadas
-
-    // let a = {category: showCategoriesList(), product: showProductsList()};
-    // let b = a.type;
-    // b();
-
+    currentItemsArray = sortItems(currentSortCriteria, currentItemsArray, type);
+    console.log(currentItemsArray)
 
     if(type === "category"){
         showCategoriesList()
