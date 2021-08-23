@@ -36,13 +36,14 @@
     }
   </style>
   <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <meta name="google-signin-scope" content="profile email">
   <meta name="google-signin-client_id" content="816860176303-d5iuu3lrkbrrbmvhfj4in3cvu71nccd2.apps.googleusercontent.com">
 </head>
 
 <body class="text-center">
-  <div class="container" style="width: 400px;">
-    <img src="img/login.png" alt="login" class="mb-4" width="350">
-    <div class="form-signin">
+  <div class="container">
+    <img src="img/login.png" alt="login" class="mb-4" width="330">
+    <div class="signin">
       <label for="correo" class="sr-only">E-mail</label>
       <input type="email" placeholder="E-mail" name="correo" id="correo" class="form-control text-primary mb-1" autofocus>
       <label for="contrasenia" class="sr-only"></label>
@@ -55,8 +56,10 @@
       </div>
       <button id="login" class="btn-primary btn-block btn-lg mb-1">Iniciar Sesión</button>
       <a href="#" class="mb-1">¿No tienes una cuenta?</a><br>
+      <div class="g-signin2" data-theme="dark" data-onsuccess="onSignIn">
+      </div>
       <a href="#" id="volver" class="text-muted">Volver</a>
-      <div class="g-signin2" data-onsuccess="onSuccess" data-gapiscan="true" data-onload="true"></div>
+      
     </div>
   </div>
   <script src="js/login.js"></script>
