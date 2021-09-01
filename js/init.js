@@ -70,3 +70,9 @@ const signOut = () => {
       console.log('User signed out.');
     });
 }
+
+const onLoad = () => {
+  gapi.load('auth2', () => {
+    gapi.auth2.init()
+  });
+}
