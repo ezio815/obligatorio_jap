@@ -4,10 +4,11 @@ const ORDER_BY_PROD_COUNT = "Cant.";
 const ORDER_ASC_BY_COST = "Mayor precio";
 const ORDER_DESC_BY_COST = "Menor precio";
 const ORDER_BY_RELEVANCE = "Relev."
-var currentItemsArray = [];
-var currentSortCriteria = undefined;
-var minCount = undefined;
-var maxCount = undefined;
+let currentItemsArray = [];
+let currentSortCriteria = undefined;
+let minCount = undefined;
+let maxCount = undefined;
+let search = undefined;
 
 const sortItems = (criteria, array) => {
     let result = [];  
@@ -77,7 +78,6 @@ function sortAndShowItems(sortCriteria, type, itemsArray){
     }
 
     currentItemsArray = sortItems(currentSortCriteria, currentItemsArray);
-    console.log(currentItemsArray)
 
     if(type === "category"){
         showCategoriesList()

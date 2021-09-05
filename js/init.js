@@ -7,6 +7,8 @@ const PRODUCT_INFO_COMMENTS_URL = "https://japdevdep.github.io/ecommerce-api/pro
 const CART_INFO_URL = "https://japdevdep.github.io/ecommerce-api/cart/987.json";
 const CART_BUY_URL = "https://japdevdep.github.io/ecommerce-api/cart/buy.json";
 
+let user = null;
+
 var showSpinner = function(){
   document.getElementById("spinner-wrapper").style.display = "block";
 }
@@ -46,9 +48,23 @@ var getJSONData = function(url){
 document.addEventListener("DOMContentLoaded", function(e){
   localStorage.removeItem("origen");
   let login = document.getElementById("log in");
-  if(localStorage.getItem("user") != null || sessionStorage.getItem("user") != null){
+  //if (localStorage.getItem("user") != null || sessionStorage.getItem("user") != null) {
+  if (localStorage.getItem("user") != null) user = localStorage.getItem("user");
+  else user = sessionStorage.getItem("user");
+  if (user) {
     login.href = "#";
-    login.textContent = "Cerrar Sesion";
+    login.textContent = user;
+    login.classList.add("text-primary")
+    login.addEventListener("mouseover", () => {
+      login.textContent = "¿Cerrar Sesión?"
+      login.classList.remove("text-primary");
+      login.classList.add("text-warning");
+    });
+    login.addEventListener("mouseout", () => {
+      login.textContent = user;
+      login.classList.remove("text-warning")
+      login.classList.add("text-primary");
+    });
     login.addEventListener("click", () => {
       //signOut();
       localStorage.removeItem("user");
@@ -60,6 +76,20 @@ document.addEventListener("DOMContentLoaded", function(e){
   {
     login.addEventListener("click", () => {
       localStorage.setItem("origen", location.href)
+    });
+  }
+  if (/products\.html/.test(location.href)) {
+    let buscador = document.getElementById("buscar");
+    buscador.addEventListener("keyup", () => {
+      search = buscador.value;
+      showProductsList();
+    });
+  }
+  else if (/categories\.html/.test(location.href)) {
+    let buscador = document.getElementById("buscar");
+    buscador.addEventListener("keyup", () => {
+      search = buscador.value;
+      showCategoriesList();
     });
   }
 });
