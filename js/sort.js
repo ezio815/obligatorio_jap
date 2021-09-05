@@ -56,7 +56,7 @@ const sortItems = (criteria, array) => {
         });
     }
     else if (criteria === ORDER_BY_RELEVANCE) {
-        result = array.sort((a,b) => {
+        result = array.sort((a, b) => {
             let aCount, bCount;
             aCount = parseInt(a.soldCount);
             bCount = parseInt(b.soldCount);

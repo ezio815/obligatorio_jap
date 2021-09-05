@@ -7,12 +7,36 @@ document.addEventListener("DOMContentLoaded", function(e){
 });
 
 document.getElementById("login").addEventListener("click", () => {
-    let mail = document.getElementById("correo").value;
+    let user = document.getElementById("usuario").value;
     let pass = document.getElementById("contrasenia").value;
-    if (mail.trim() === "" || pass.trim() === ""){
-        alert("Los campos no pueden estar vacios");
+    if (user.trim() === "" || pass.trim() === "") {
+        alert("Los campos no pueden estar vacíos");
     }
-    else if (/@/.test(mail.trim())){
+    else if (/[A-Za-z][\w\s-]*[A-Za-z0-9]/.test(user) && user.length >= 4) {
+        if (pass.trim().length >= 4) {
+            if(document.getElementById("recordar").checked){
+                localStorage.setItem("user", user);
+            }
+            else {
+                sessionStorage.setItem("user", user);
+            }
+            location.href = localStorage.getItem("origen");
+        }
+        else {
+            alert("Contraseña inválida");
+        }
+    }
+    else {
+        alert("Usuario inválido");
+    }
+});
+    /*else if (/[A-Za-z]/.test(user[0])) {
+        for (let i = 0; i < user.length; i++) {
+            if (!/[a-zA-Z0-9]/)
+        }
+    }*/
+
+    /*else if (/@/.test(mail.trim())){
         let ma_il = mail.trim().split("@")
         if (ma_il.length != 2 || !(/[.]/.test(mail.trim()))){
             alert("Correo inválido");
@@ -41,12 +65,4 @@ document.getElementById("login").addEventListener("click", () => {
     else{
         alert("Correo invalido");
     }
-});
-
-function onSignIn(googleUser) {
-    var profile = googleUser.getBasicProfile();
-    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-    console.log('Name: ' + profile.getName());
-    console.log('Image URL: ' + profile.getImageUrl());
-    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-}
+});*/

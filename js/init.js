@@ -46,13 +46,13 @@ var getJSONData = function(url){
 document.addEventListener("DOMContentLoaded", function(e){
   localStorage.removeItem("origen");
   let login = document.getElementById("log in");
-  if(localStorage.getItem("mail") != null || sessionStorage.getItem("mail") != null){
+  if(localStorage.getItem("user") != null || sessionStorage.getItem("user") != null){
     login.href = "#";
     login.textContent = "Cerrar Sesion";
     login.addEventListener("click", () => {
-      signOut();
-      localStorage.removeItem("mail");
-      sessionStorage.removeItem("mail");
+      //signOut();
+      localStorage.removeItem("user");
+      sessionStorage.removeItem("user");
       location.reload();
     });
   }
