@@ -5,10 +5,11 @@ const ORDER_ASC_BY_COST = "Mayor precio";
 const ORDER_DESC_BY_COST = "Menor precio";
 const ORDER_BY_RELEVANCE = "Relev."
 let currentItemsArray = [];
-let currentSortCriteria = undefined;
-let minCount = undefined;
-let maxCount = undefined;
-let search = undefined;
+let currentSortCriteria = null;
+let minCount = null;
+let maxCount = null;
+let search = null;
+let showType = null;
 
 const sortItems = (criteria, array) => {
     let result = [];  
@@ -70,10 +71,10 @@ const sortItems = (criteria, array) => {
     return result;
 }
 
-function sortAndShowItems(sortCriteria, type, itemsArray){
+const sortAndShowItems = (sortCriteria, type, itemsArray) => {
     currentSortCriteria = sortCriteria;
 
-    if(itemsArray != undefined){
+    if(itemsArray){
         currentItemsArray = itemsArray;
     }
 
@@ -86,3 +87,40 @@ function sortAndShowItems(sortCriteria, type, itemsArray){
         showProductsList()
     }
 }
+document.addEventListener("DOMContentLoaded", () => {
+    if (/categories\.html/.test(location.href)) showType = showCategoriesList;
+    else if (/products\.html/.test(location.href)) showType = showProductsList;
+
+    document.getElementById("clearRangeFilter").addEventListener("click", () => {
+        document.getElementById("rangeFilterCountMin").value = "";
+        document.getElementById("rangeFilterCountMax").value = "";
+
+        minCount = null;
+        maxCount = null;
+
+        showType();
+    });
+
+    document.getElementById("rangeFilterCount").addEventListener("click", () => {
+        //Obtengo el mínimo y máximo de los intervalos para filtrar por cantidad
+        //de productos por categoría.
+        minCount = document.getElementById("rangeFilterCountMin").value;
+        maxCount = document.getElementById("rangeFilterCountMax").value;
+
+        if (minCount && parseInt(minCount) >= 0) {
+            minCount = parseInt(minCount);
+        }
+        else{
+            minCount = null;
+        }
+
+        if (maxCount && parseInt(maxCount) >= 0) {
+            maxCount = parseInt(maxCount);
+        }
+        else{
+            maxCount = null;
+        }
+
+        showType();
+    });
+});

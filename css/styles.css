@@ -139,3 +139,8 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
+.logout {
+  width: 115px;
+  text-align: center;
+}

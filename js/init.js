@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function(e){
   if (user) {
     login.href = "#";
     login.textContent = user;
-    login.classList.add("text-primary")
+    login.classList.add("text-primary", "logout")
     login.addEventListener("mouseover", () => {
       login.textContent = "¿Cerrar Sesión?"
       login.classList.remove("text-primary");
