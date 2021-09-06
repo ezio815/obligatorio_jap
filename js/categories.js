@@ -1,4 +1,4 @@
-function showCategoriesList(){
+const showCategoriesList = () => {
 
     let htmlContentToAppend = "";
     for(let i = 0; i < currentItemsArray.length; i++){
@@ -37,52 +37,19 @@ function showCategoriesList(){
 document.addEventListener("DOMContentLoaded", () => {
     getJSONData(CATEGORIES_URL).then(resultObj => {
         if (resultObj.status === "ok"){
-            sortAndShowItems(ORDER_ASC_BY_NAME, "category", resultObj.data);
+            sortAndShowItems(ORDER_ASC_BY_NAME, resultObj.data);
         }
     });
 
     document.getElementById("sortAsc").addEventListener("click", () => {
-        sortAndShowItems(ORDER_ASC_BY_NAME, "category");
+        sortAndShowItems(ORDER_ASC_BY_NAME);
     });
 
     document.getElementById("sortDesc").addEventListener("click", () => {
-        sortAndShowItems(ORDER_DESC_BY_NAME, "category");
+        sortAndShowItems(ORDER_DESC_BY_NAME);
     });
 
     document.getElementById("sortByCount").addEventListener("click", () => {
-        sortAndShowItems(ORDER_BY_PROD_COUNT, "category");
+        sortAndShowItems(ORDER_BY_PROD_COUNT);
     });
-
-    /*document.getElementById("clearRangeFilter").addEventListener("click", () => {
-        document.getElementById("rangeFilterCountMin").value = "";
-        document.getElementById("rangeFilterCountMax").value = "";
-
-        minCount = null;
-        maxCount = null;
-
-        showCategoriesList();
-    });
-
-    document.getElementById("rangeFilterCount").addEventListener("click", () => {
-        //Obtengo el mínimo y máximo de los intervalos para filtrar por cantidad
-        //de productos por categoría.
-        minCount = document.getElementById("rangeFilterCountMin").value;
-        maxCount = document.getElementById("rangeFilterCountMax").value;
-
-        if (minCount && parseInt(minCount) >= 0) {
-            minCount = parseInt(minCount);
-        }
-        else{
-            minCount = null;
-        }
-
-        if (maxCount && parseInt(maxCount) >= 0) {
-            maxCount = parseInt(maxCount);
-        }
-        else{
-            maxCount = null;
-        }
-
-        showCategoriesList();
-    });*/
 });

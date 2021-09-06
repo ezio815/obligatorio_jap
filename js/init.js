@@ -45,10 +45,9 @@ var getJSONData = function(url){
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
-document.addEventListener("DOMContentLoaded", function(e){
+document.addEventListener("DOMContentLoaded", () => {
   localStorage.removeItem("origen");
   let login = document.getElementById("log in");
-  //if (localStorage.getItem("user") != null || sessionStorage.getItem("user") != null) {
   if (localStorage.getItem("user") != null) user = localStorage.getItem("user");
   else user = sessionStorage.getItem("user");
   if (user) {
@@ -66,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function(e){
       login.classList.add("text-primary");
     });
     login.addEventListener("click", () => {
-      //signOut();
+      //signOut(); //No logré que funcionara el logout de google
       localStorage.removeItem("user");
       sessionStorage.removeItem("user");
       location.reload();
@@ -76,20 +75,6 @@ document.addEventListener("DOMContentLoaded", function(e){
   {
     login.addEventListener("click", () => {
       localStorage.setItem("origen", location.href)
-    });
-  }
-  if (/products\.html/.test(location.href)) {
-    let buscador = document.getElementById("buscar");
-    buscador.addEventListener("keyup", () => {
-      search = buscador.value;
-      showProductsList();
-    });
-  }
-  else if (/categories\.html/.test(location.href)) {
-    let buscador = document.getElementById("buscar");
-    buscador.addEventListener("keyup", () => {
-      search = buscador.value;
-      showCategoriesList();
     });
   }
 });

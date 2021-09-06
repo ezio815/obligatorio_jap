@@ -1,4 +1,4 @@
-function showProductsList(){
+const showProductsList = () => {
 
     let htmlContentToAppend = "";
     for(let i = 0; i < currentItemsArray.length; i++){
@@ -38,52 +38,19 @@ function showProductsList(){
 document.addEventListener("DOMContentLoaded", () => {
     getJSONData(PRODUCTS_URL).then(resultObj => {
         if (resultObj.status === "ok"){
-            sortAndShowItems(ORDER_DESC_BY_COST, "product", resultObj.data);
+            sortAndShowItems(ORDER_DESC_BY_COST, resultObj.data);
         }
     });
 
     document.getElementById("sortAsc").addEventListener("click", () => {
-        sortAndShowItems(ORDER_ASC_BY_COST, "product");
+        sortAndShowItems(ORDER_ASC_BY_COST);
     });
 
     document.getElementById("sortDesc").addEventListener("click", () => {
-        sortAndShowItems(ORDER_DESC_BY_COST, "product");
+        sortAndShowItems(ORDER_DESC_BY_COST);
     });
 
     document.getElementById("sortByRelev").addEventListener("click", () => {
-        sortAndShowItems(ORDER_BY_RELEVANCE, "product");
+        sortAndShowItems(ORDER_BY_RELEVANCE);
     });
-
-    /*document.getElementById("clearRangeFilter").addEventListener("click", function(){
-        document.getElementById("rangeFilterCountMin").value = "";
-        document.getElementById("rangeFilterCountMax").value = "";
-
-        minCount = null;
-        maxCount = null;
-
-        showProductsList();
-    });
-
-    document.getElementById("rangeFilterCount").addEventListener("click", function(){
-        //Obtengo el mínimo y máximo de los intervalos para filtrar por cantidad
-        //de productos por categoría.
-        minCount = document.getElementById("rangeFilterCountMin").value;
-        maxCount = document.getElementById("rangeFilterCountMax").value;
-
-        if (minCount && parseInt(minCount) >= 0) {
-            minCount = parseInt(minCount);
-        }
-        else{
-            minCount = null;
-        }
-
-        if (maxCount  && parseInt(maxCount) >= 0) {
-            maxCount = parseInt(maxCount);
-        }
-        else{
-            maxCount = null;
-        }
-
-        showProductsList();
-    });*/
 });

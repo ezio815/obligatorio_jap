@@ -71,7 +71,7 @@ const sortItems = (criteria, array) => {
     return result;
 }
 
-const sortAndShowItems = (sortCriteria, type, itemsArray) => {
+const sortAndShowItems = (sortCriteria, itemsArray) => {
     currentSortCriteria = sortCriteria;
 
     if(itemsArray){
@@ -80,13 +80,9 @@ const sortAndShowItems = (sortCriteria, type, itemsArray) => {
 
     currentItemsArray = sortItems(currentSortCriteria, currentItemsArray);
 
-    if(type === "category"){
-        showCategoriesList()
-    }
-    if(type === "product"){
-        showProductsList()
-    }
+    showType();
 }
+
 document.addEventListener("DOMContentLoaded", () => {
     if (/categories\.html/.test(location.href)) showType = showCategoriesList;
     else if (/products\.html/.test(location.href)) showType = showProductsList;
@@ -121,6 +117,11 @@ document.addEventListener("DOMContentLoaded", () => {
             maxCount = null;
         }
 
+        showType();
+    });
+
+    document.getElementById("buscar").addEventListener("keyup", function() {
+        search = this.value;
         showType();
     });
 });
