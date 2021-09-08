@@ -1,8 +1,8 @@
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
-document.addEventListener("DOMContentLoaded", function(e){
-    getJSONData(PRODUCT_INFO_URL).then(function(resultObj){
+document.addEventListener("DOMContentLoaded", () => {
+    getJSONData(PRODUCT_INFO_URL).then(resultObj => {
         if (resultObj.status === "ok") {
             product = resultObj.data;
             let productNameHTML = document.getElementById("productName");
@@ -22,6 +22,12 @@ document.addEventListener("DOMContentLoaded", function(e){
             showImagesGallery(product.images);
         }
     });
+
+    getJSONData(PRODUCT_INFO_COMMENTS_URL).then(resultObj => {
+        if (resultObj.status === "ok") {
+            showComments(resultObj.data);
+        }
+    });
 });
 
 const showImagesGallery = (array) => {
@@ -38,5 +44,34 @@ const showImagesGallery = (array) => {
         </div>
         `
         document.getElementById("productImagesGallery").innerHTML = htmlContentToAppend;
+    }
+}
+
+const showComments = (array) => {
+    let htmlContentToAppend = "";
+
+    for (let i = 0; i < array.length; i++) {
+        let comment = array[i];
+        let score = ""
+        for (let j = 1; j <= 5; j++) {
+            if (j <= comment.score) {
+                score += `
+                <label class="float-right star checked">★</label>
+                `
+            }
+            else {
+                score += `
+                <label class="float-right star">★</label>
+                `
+            }
+        }
+
+        htmlContentToAppend += `
+        <dt>${comment.user} ${score}</dt>
+        <dd>${comment.description}</dd>
+        <dd><small>Publicado el ${comment.dateTime}</small></dd>
+        <hr>
+        `
+        document.getElementById("comments").innerHTML = htmlContentToAppend;
     }
 }

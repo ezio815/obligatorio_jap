@@ -21,7 +21,7 @@ const showProductsList = () => {
                             <small class="text-muted">${product.soldCount} vendidos</small>
                         </div>
                         <p class="mb-1">${product.description}</p>
-                        <h5 class="mb-1"><strong>${product.currency} ${product.cost}</strong></h5>
+                        <h5 class="mb-1"><b>${product.currency}</b> ${product.cost}</h5>
                     </div>
                 </div>
             </a>

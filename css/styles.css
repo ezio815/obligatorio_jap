@@ -136,7 +136,22 @@ a.custom-card:hover {
   text-decoration: inherit;
 }
 
+.star{
+  color: #c1b8b8;
+  font-size: 1em;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; 
+}
+
 .checked {
+  color: orange;
+}
+
+.puntuacion label:hover,
+.puntuacion label ~ label:hover,
+.puntuacion input:checked ~ label{
   color: orange;
 }
 
