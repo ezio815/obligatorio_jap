@@ -148,9 +148,19 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+.puntuacion {
+  width:6.3em;
+  display: inline-block;
+}
+
+.puntuacion label {
+  float: right;
+  color: #c1b8b8;
+  font-size: 1.5em; 
+}
 
 .puntuacion label:hover,
-.puntuacion label ~ label:hover,
+.puntuacion label:hover ~ label,
 .puntuacion input:checked ~ label{
   color: orange;
 }

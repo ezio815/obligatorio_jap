@@ -48,7 +48,7 @@ var getJSONData = function(url){
 document.addEventListener("DOMContentLoaded", () => {
   localStorage.removeItem("origen");
   let login = document.getElementById("log in");
-  if (localStorage.getItem("user") != null) user = localStorage.getItem("user");
+  if (localStorage.getItem("user")) user = localStorage.getItem("user");
   else user = sessionStorage.getItem("user");
   if (user) {
     login.href = "#";

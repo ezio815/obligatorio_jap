@@ -28,6 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
             showComments(resultObj.data);
         }
     });
+
+    document.getElementById("comentar").addEventListener("click", addComment);
 });
 
 const showImagesGallery = (array) => {
@@ -74,4 +76,37 @@ const showComments = (array) => {
         `
         document.getElementById("comments").innerHTML = htmlContentToAppend;
     }
+}
+
+const addComment = () => {
+    if (localStorage.getItem("user") || sessionStorage.getItem("user")) {
+        let user;
+        if (localStorage.getItem("user")) user = localStorage.getItem("user");
+        else user = sessionStorage.getItem("user");
+        let comentario = document.getElementById("comment").value;
+        let puntuacion;
+        document.getElementsByName("puntaje").forEach(element => {
+            if (element.checked) puntuacion = element.value;});
+        let fecha = fechaActual();
+        alert(fecha);
+    }
+    else {
+        alert("Debes iniciar sesión para dejar un comentario");
+    }
+}
+
+const fechaActual = () => {
+    let fecha = new Date;
+    let anio = fecha.getFullYear();
+    let mes = fecha.getMonth();
+    let dia = fecha.getDate();
+    let hora = fecha.getHours();
+    let minuto = fecha.getMinutes();
+    let segundo = fecha.getSeconds();
+    let lista = [anio, mes, dia, hora, minuto, segundo]
+    lista.forEach(element => {
+        if (parseInt(element) < 10) element = `0${element}`;
+    });
+    
+    return `${lista[0]}-${lista[1]}-${lista[2]} ${lista[3]}:${lista[4]}:${lista[5]}`;
 }
