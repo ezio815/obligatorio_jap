@@ -28,6 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
             showComments(sortItems(ORDER_BY_DATETIME, resultObj.data));
         }
     });
+
+    document.getElementById("comentar").addEventListener("click", addComment);
 });
 
 const showImagesGallery = (array) => {
@@ -74,4 +76,61 @@ const showComments = (array) => {
         `
         document.getElementById("comments").innerHTML = htmlContentToAppend;
     }
+}
+
+const addComment = () => {
+    if (localStorage.getItem("user") || sessionStorage.getItem("user")) {
+        let user;
+        if (localStorage.getItem("user")) user = localStorage.getItem("user");
+        else user = sessionStorage.getItem("user");
+        let comentario = document.getElementById("comment").value;
+        let puntuacion;
+        document.getElementsByName("puntaje").forEach(element => {
+            if (element.checked) puntuacion = element.value;});
+        let fecha = fechaActual();
+        let comentarios = document.getElementById("comments");
+        let score = "";
+        for (let j = 1; j <= 5; j++) {
+            if (j <= puntuacion) {
+                score += `
+                <label class="float-right star checked">★</label>
+                `
+            }
+            else {
+                score += `
+                <label class="float-right star">★</label>
+                `
+            }
+        }
+        if (comentario && puntuacion > 0) {
+            comentarios.innerHTML = `
+            <dt>${user} ${score}</dt>
+            <dd>${comentario}</dd>
+            <dd><small>Publicado el ${fecha}</small></dd>
+            <hr> ${comentarios.innerHTML}`;
+        }
+        else alert("Debes escribir un comentario y dejar tu puntuación.");
+    }
+    else {
+        alert("Debes iniciar sesión para dejar un comentario");
+    }
+}
+
+const fechaActual = () => {
+    let fecha = new Date;
+    let anio = fecha.getFullYear();
+    let mes = fecha.getMonth() + 1;
+    let dia = fecha.getDate();
+    let hora = fecha.getHours();
+    let minuto = fecha.getMinutes();
+    let segundo = fecha.getSeconds();
+    let lista = [anio, mes, dia, hora, minuto, segundo]
+    for (let i = 0; i < 6; i++) {
+        if (lista[i] < 10) lista[i] = `0${lista[i]}`;
+    }
+    // lista.forEach(element => {
+    //     if (parseInt(element) < 10) element = `0${element}`;
+    // });
+    
+    return `${lista[0]}-${lista[1]}-${lista[2]} ${lista[3]}:${lista[4]}:${lista[5]}`;
 }
