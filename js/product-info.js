@@ -39,13 +39,23 @@ const showImagesGallery = (array) => {
         let imageSrc = array[i];
 
         htmlContentToAppend += `
+        <div class="carousel-item">
+            <img class="img-fluid img-thumbnail" src="` + imageSrc + `" alt="" width=500>
+        </div>`
+    /*<div class="carousel-item">
+      <img src="..." class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="..." class="d-block w-100" alt="...">
+    </div>
         <div class="col-lg-3 col-md-4 col-6">
             <div class="d-block mb-4 h-100">
                 <img class="img-fluid img-thumbnail" src="` + imageSrc + `" alt="">
             </div>
         </div>
-        `
+        `*/
         document.getElementById("productImagesGallery").innerHTML = htmlContentToAppend;
+        document.getElementsByClassName("carousel-item")[0].classList.add("active");
     }
 }
 
