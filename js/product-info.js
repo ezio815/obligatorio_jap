@@ -12,6 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
             let productSoldCountHTML = document.getElementById("productSoldCount");
             let productCategoryHTML = document.getElementById("productCategory");
 
+            let relatedProducts = product.relatedProducts;
+
             productNameHTML.innerHTML = product.name;
             productDescriptionHTML.innerHTML = product.description;
             productCurrencyHTML.innerHTML = product.currency;
@@ -20,6 +22,12 @@ document.addEventListener("DOMContentLoaded", () => {
             productCategoryHTML.innerHTML = product.category;
 
             showImagesGallery(product.images);
+            
+            getJSONData(PRODUCTS_URL).then(resultObj => {
+                if (resultObj.status === "ok") {
+                    showRelatedProducts(resultObj.data, relatedProducts);
+                }
+            });
         }
     });
 
@@ -40,8 +48,8 @@ const showImagesGallery = (array) => {
 
         htmlContentToAppend += `
         <div class="carousel-item">
-            <img class="img-fluid img-thumbnail" src="` + imageSrc + `" alt="" width=500>
-        </div>`
+            <img class="img-fluid img-thumbnail" src="${imageSrc}" alt="" width=500>
+        </div>`;
     /*<div class="carousel-item">
       <img src="..." class="d-block w-100" alt="...">
     </div>
@@ -59,6 +67,34 @@ const showImagesGallery = (array) => {
     }
 }
 
+const showRelatedProducts = (array, index) => {
+    let htmlContentToAppend = "";
+    if (array.length - 1 >= index[index.length - 1]) {
+        for (let i = 0; i < index.length; i++) {
+            let product = array[index[i]];
+
+            htmlContentToAppend += `
+            <a href="product-info.html" class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col-3">
+                        <img src="${product.imgSrc}" alt="${product.description}" class="img-thumbnail">
+                    </div>
+                    <div class="col">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h4 class="mb-1">${product.name}</h4>
+                            <small class="text-muted">${product.soldCount} vendidos</small>
+                        </div>
+                        <p class="mb-1">${product.description}</p>
+                        <h5 class="mb-1"><b>${product.currency}</b> ${product.cost}</h5>
+                    </div>
+                </div>
+            </a>
+            `;
+            document.getElementById("related").innerHTML = htmlContentToAppend;
+        }
+    }
+}
+
 const showComments = (array) => {
     let htmlContentToAppend = "";
 
@@ -69,12 +105,12 @@ const showComments = (array) => {
             if (j <= comment.score) {
                 score += `
                 <label class="float-right star checked">★</label>
-                `
+                `;
             }
             else {
                 score += `
                 <label class="float-right star">★</label>
-                `
+                `;
             }
         }
 
@@ -83,7 +119,7 @@ const showComments = (array) => {
         <dd>${comment.description}</dd>
         <dd><small>Publicado el ${comment.dateTime}</small></dd>
         <hr>
-        `
+        `;
         document.getElementById("comments").innerHTML = htmlContentToAppend;
     }
 }
@@ -104,12 +140,12 @@ const addComment = () => {
             if (j <= puntuacion) {
                 score += `
                 <label class="float-right star checked">★</label>
-                `
+                `;
             }
             else {
                 score += `
                 <label class="float-right star">★</label>
-                `
+                `;
             }
         }
         if (comentario && puntuacion > 0) {
