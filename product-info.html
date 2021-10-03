@@ -20,11 +20,18 @@
   <nav class="site-header sticky-top py-1 bg-dark">
     <div class="container d-flex flex-column flex-md-row justify-content-between">
       <a class="py-2 d-none d-md-inline-block" href="index.html">Inicio</a>
-      <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
-      <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
-      <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
-      <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
-      <a class="py-2 d-none d-md-inline-block" href="login.html" id="log in">Iniciar Sesión</a>
+        <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
+        <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
+        <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
+        <div class="dropdown">
+          <a class="py-2 d-none d-md-inline-block dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">Usuario</a>
+          <div class="dropdown-menu" id="div-menu" aria-labelledby="dropdownMenuLink">
+            <a href="login.html" class="dropdown-item" id="log in">Iniciar Sesión</a>
+            <a href="cart.html" class="dropdown-item disabled text-muted" aria-disabled="true">Mi carrito</a>
+            <a href="my-profile.html" class="dropdown-item disabled text-muted" aria-disabled="true">Ver mi perfil</a>
+            <a href="#" class="dropdown-item disabled text-muted" aria-disabled="true" id="log out">Cerrar sesión</a>
+          </div>
+        </div>
     </div>
   </nav>
   <main role="main">
@@ -61,10 +68,27 @@
 
         <dt>Imágenes ilustrativas</dt>
         <dd>
-          <div class="row text-center text-lg-left pt-2" id="productImagesGallery">
+          <div class="row text-center text-lg-left pt-2">
+            <div id="imgCarousel" class="carousel slide" data-ride="carousel" data-interval=2000>
+              <div class="carousel-inner" id="productImagesGallery">
+              </div>
+              <a class="carousel-control-prev" href="#imgCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#imgCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
           </div>
         </dd>
       </dl>
+      <hr class=my-3>
+      <div class="text-center p-4">
+        <h2>Productos relacionados</h2>
+      </div>
+      <dl id="related"></dl>
       <hr class=my-3>
       <div class="text-center p-4">
         <h2>Comentarios</h2>

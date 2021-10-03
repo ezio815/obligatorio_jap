@@ -53,8 +53,15 @@ document.addEventListener("DOMContentLoaded", () => {
   if (user) {
     login.href = "#";
     login.textContent = user;
-    login.classList.add("text-primary", "logout")
-    login.addEventListener("mouseover", () => {
+    let elementos = document.getElementById("div-menu").getElementsByTagName("a");
+    for (let i = 1; i <= 3; i++) {
+      elementos[i].classList.remove("disabled", "text-muted");
+      elementos[i].setAttribute("aria-disabled", false);
+    }
+    login.classList.add("disabled", "text-primary");
+    login.setAttribute("aria-disabled", true);
+    
+    /*login.addEventListener("mouseover", () => {
       login.textContent = "¿Cerrar Sesión?"
       login.classList.remove("text-primary");
       login.classList.add("text-warning");
@@ -63,8 +70,8 @@ document.addEventListener("DOMContentLoaded", () => {
       login.textContent = user;
       login.classList.remove("text-warning")
       login.classList.add("text-primary");
-    });
-    login.addEventListener("click", () => {
+    });*/
+    document.getElementById("log out").addEventListener("click", () => {
       //signOut(); //No logré que funcionara el logout de google
       localStorage.removeItem("user");
       sessionStorage.removeItem("user");

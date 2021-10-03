@@ -165,7 +165,6 @@ a.custom-card:hover {
   color: orange;
 }
 
-.logout {
-  width: 115px;
-  text-align: center;
+.ocultar{
+  display: none;
 }
