@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     getJSONData(PRODUCT_INFO_COMMENTS_URL).then(resultObj => {
         if (resultObj.status === "ok") {
-            showComments(sortItems(ORDER_BY_DATETIME, resultObj.data));
+            showComments(resultObj.data);
         }
     });
 
