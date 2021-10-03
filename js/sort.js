@@ -3,8 +3,7 @@ const ORDER_DESC_BY_NAME = "ZA";
 const ORDER_BY_PROD_COUNT = "Cant.";
 const ORDER_ASC_BY_COST = "Mayor precio";
 const ORDER_DESC_BY_COST = "Menor precio";
-const ORDER_BY_RELEVANCE = "Relev.";
-const ORDER_BY_DATETIME = "datetime";
+const ORDER_BY_RELEVANCE = "Relev."
 let currentItemsArray = [];
 let currentSortCriteria = null;
 let minCount = null;
@@ -67,45 +66,6 @@ const sortItems = (criteria, array) => {
             if (aCount < bCount) return 1;
             return 0;
         });
-    }
-    else if (criteria === ORDER_BY_DATETIME) {
-        result = array.sort((a, b) => {
-            let aYear = a.getFullYear();
-            let bYear = b.getFullYear();
-            if (aYear > bYear) return -1;
-            else if (aYear < bYear) return 1;
-            else {
-                let aMonth = a.getMonth();
-                let bMonth = b.getMonth();
-                if (aMonth > bMonth) return -1;
-                else if (aMonth < bMonth) return 1;
-                else {
-                    let aDay = a.getDate();
-                    let bDay = b.getDate();
-                    if (aDay > bDay) return -1;
-                    else if (aDay < bDay) return 1;
-                    else {
-                        let aHour = a.getHours();
-                        let bHour = b.getHours();
-                        if (aHour > bHour) return -1;
-                        else if (aHour < bHour) return 1;
-                        else {
-                            let aMinute = a.getMinutes();
-                            let bMinute = b.getMinutes();
-                            if (aMinute > bMinute) return -1;
-                            else if (aMinute < bMinute) return 1;
-                            else {
-                                let aSecond = a.getSeconds();
-                                let bSecond = b.getSeconds();
-                                if (aSecond > bSecond) return -1;
-                                else if (aSecond < bSecond) return 1;
-                                else return 0;
-                            }
-                        }
-                    }
-                }
-            }
-        })
     }
 
     return result;
