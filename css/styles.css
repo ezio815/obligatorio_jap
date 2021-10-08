@@ -168,3 +168,8 @@ a.custom-card:hover {
 .ocultar{
   display: none;
 }
+
+.dividido td{
+  border: black 1px solid;
+  text-align: center;
+}

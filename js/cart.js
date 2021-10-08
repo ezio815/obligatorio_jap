@@ -19,6 +19,25 @@ const showItems = (array) => {
         if (item.currency === "USD") total += subtotal * 40;
         else total += subtotal;
         htmlContentToAppend += `
+        <tr class="dividido">
+            <td>
+                <img src="${item.src}" alt="${item.name}" width=100>
+            </td>
+            <td class="nombre">
+                <h5>${item.name}</h5>
+            </td>
+            <td class="precio-u">
+                <b>${item.currency}</b> <span>${item.unitCost}</span> <br> Por unidad
+            </td>
+            <td class="precio-s">
+                <b>${item.currency}</b> <span>${subtotal}</span> <br> Subtotal
+            </td>
+            <td>
+                <input type="number" value=${item.count} onchange=update() class="cantidad">
+            </td>
+        </tr>
+        `
+        /*`
         <div class="list-group-item">
             <div class="row">
                 <div class="col-3">
@@ -34,11 +53,24 @@ const showItems = (array) => {
                 </div>
             </div>
         </div>
-        `;
-        console.log("hola")
+        `;*/
         document.getElementById("container").innerHTML = htmlContentToAppend;
     }
     document.getElementById("total").innerHTML = `
-    <h4>Total: <b>UYU</b> ${total}</h4>`;
+    <h4>Total: <b>UYU</b> ${total}</h4>
+    `;
+}
 
+function update() {
+    let total = 0;
+    let precioU = document.getElementsByClassName("precio-u");
+    let precioS = document.getElementsByClassName("precio-s");
+    let cantidad = document.getElementsByClassName("cantidad");
+    for (let i of precioU) {
+        let subtotal = precioS[i].querySelector("span");
+        subtotal.innerHTML = precioU[i].querySelector("span") * cantidad[i];
+        if (precioU[i].querySelector("b") === USD) total += subtotal * 40;
+        else total += subtotal;
+    }
+    document.getElementById("total").innerHTML = total;
 }
