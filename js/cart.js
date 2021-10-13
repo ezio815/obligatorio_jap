@@ -23,7 +23,7 @@ const showItems = (array) => {
             <td>
                 <img src="${item.src}" alt="${item.name}" width=100>
             </td>
-            <td class="nombre">
+            <td>
                 <h5>${item.name}</h5>
             </td>
             <td class="precio-u">
@@ -33,7 +33,8 @@ const showItems = (array) => {
                 <b>${item.currency}</b> <span>${subtotal}</span> <br> Subtotal
             </td>
             <td>
-                <input type="number" value=${item.count} onchange=update() class="cantidad">
+                <label for="cantidad${i}">Cantidad: </label>
+                <input type="number" value=${item.count} onchange="update()" class="cantidad" id="cantidad${i}">
             </td>
         </tr>
         `
@@ -66,11 +67,13 @@ function update() {
     let precioU = document.getElementsByClassName("precio-u");
     let precioS = document.getElementsByClassName("precio-s");
     let cantidad = document.getElementsByClassName("cantidad");
-    for (let i of precioU) {
+    for (let i = 0; i < precioU.length; i++) {
         let subtotal = precioS[i].querySelector("span");
-        subtotal.innerHTML = precioU[i].querySelector("span") * cantidad[i];
-        if (precioU[i].querySelector("b") === USD) total += subtotal * 40;
-        else total += subtotal;
+        subtotal.innerHTML = precioU[i].querySelector("span").innerHTML * cantidad[i].value;
+        if (precioU[i].querySelector("b").innerHTML === "USD") total += parseInt(subtotal.innerHTML) * 40;
+        else total += parseInt(subtotal.innerHTML);
     }
-    document.getElementById("total").innerHTML = total;
+    document.getElementById("total").innerHTML = `
+    <h4>Total: <b>UYU</b> ${total}</h4>
+    `;
 }
