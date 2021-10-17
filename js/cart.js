@@ -34,27 +34,10 @@ const showItems = (array) => {
             </td>
             <td>
                 <label for="cantidad${i}">Cantidad: </label>
-                <input type="number" value=${item.count} onchange="update()" class="cantidad" id="cantidad${i}">
+                <input type="number" value=${item.count} onchange="update()" class="cantidad" id="cantidad${i}" min=0>
             </td>
         </tr>
-        `
-        /*`
-        <div class="list-group-item">
-            <div class="row">
-                <div class="col-3">
-                    <img src="${item.src}" alt="${item.name}" class="img-thumbnail">
-                </div>
-                <div class="col">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h4 class="mb-1">${item.name}</h4>
-                        <small class="text-muted">${item.count} en el carrito</small>
-                    </div>
-                    <h5 class="mb-1"><b>${item.currency}</b> ${item.unitCost} por unidad</h5>
-                    <h5 class="mb-1"><b>${item.currency}</b> ${subtotal} subtotal</h5>
-                </div>
-            </div>
-        </div>
-        `;*/
+        `;
         document.getElementById("container").innerHTML = htmlContentToAppend;
     }
     document.getElementById("total").innerHTML = `
