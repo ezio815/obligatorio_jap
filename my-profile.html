@@ -63,27 +63,40 @@
       </ul>
     </div>
   </nav>
-  <!--<div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-  <div class="container p-5">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 6 (Fecha de entrega: 31/10/2021).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
-    </div>
-  </div>-->
   <div>
-    <div id="datos">
-      <input type="text" name="nombre" id="nombre" placeholder="Nombre">
-      <input type="text" name="apellido" id="apellido" placeholder="Apellido">
-      <br>
-      <input type="number" name="edad" id="edad" placeholder="Edad">
-      <br>
-      <input type="email" name="correo" id="correo" placeholder="Correo">
-      <br>
-      <input type="tel" name="telefono" id="telefono" placeholder="Teléfono">
-      <br>
-      <button onclick="actualizar()">Actualizar</button>
+    <div class="row">
+      <div class="col-6">
+        <img src="" alt="Imagen de perfil" class="float-right" height="100%" id="imagen">
+      </div>
+      <div class="col-6">
+        <table class="float-left">
+          <tbody>
+            <tr>
+              <td><label for="nombre" class="mr-2">Nombre:</label></td>
+              <td><input type="text" name="nombre" id="nombre" placeholder="Nombre"></td>
+            </tr>
+            <tr>
+              <td><label for="apellido" class="mr-2">Apellido:</label></td>
+              <td><input type="text" name="apellido" id="apellido"></td>
+            </tr>
+            <tr>
+              <td><label for="edad" class="mr-2">Edad:</label></td>
+              <td><input type="number" name="edad" id="edad"></td>
+            </tr>
+            <tr>
+              <td><label for="correo" class="mr-2">Correo:</label></td>
+              <td><input type="email" name="correo" id="correo"></td>
+            </tr>
+            <tr>
+              <td><label for="telefono" class="mr-2">Teléfono:</label></td>
+              <td><input type="tel" name="telefono" id="telefono"></td>
+            </tr>
+          </tbody>
+        </table>  
+      </div>
     </div>
+    <br>
+    <button onclick="actualizar()" class="btn-primary btn-lg ml-2 mt-2">Actualizar</button>
   </div>
   <footer class="text-muted bg-light">
     <div class="container">
