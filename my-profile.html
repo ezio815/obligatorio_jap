@@ -38,26 +38,40 @@
   <nav class="site-header sticky-top py-1 bg-dark">
     <div class="container d-flex flex-column flex-md-row justify-content-between">
       <a class="py-2 d-none d-md-inline-block" href="index.html">Inicio</a>
-        <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
-        <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
-        <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
-        <div class="dropdown">
-          <a class="py-2 d-none d-md-inline-block dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">Usuario</a>
-          <div class="dropdown-menu" id="div-menu" aria-labelledby="dropdownMenuLink">
-            <a href="login.html" class="dropdown-item" id="log in">Iniciar Sesión</a>
-            <a href="cart.html" class="dropdown-item disabled text-muted" aria-disabled="true">Mi carrito</a>
-            <a href="my-profile.html" class="dropdown-item disabled text-muted" aria-disabled="true">Ver mi perfil</a>
-            <a href="#" class="dropdown-item disabled text-muted" aria-disabled="true" id="log out">Cerrar sesión</a>
-          </div>
+      <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
+      <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
+      <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
+      <div class="dropdown">
+        <a class="py-2 d-none d-md-inline-block dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">Usuario</a>
+        <div class="dropdown-menu" id="div-menu" aria-labelledby="dropdownMenuLink">
+          <a href="login.html" class="dropdown-item" id="log in">Iniciar Sesión</a>
+          <a href="cart.html" class="dropdown-item disabled text-muted" aria-disabled="true">Mi carrito</a>
+          <a href="my-profile.html" class="dropdown-item disabled text-muted" aria-disabled="true">Ver mi perfil</a>
+          <a href="#" class="dropdown-item disabled text-muted" aria-disabled="true" id="log out">Cerrar sesión</a>
         </div>
+      </div>
     </div>
   </nav>
+  <!--<div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
   <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
       <h4 class="alert-heading">¡A trabajar! :)</h4>
       <p>Esta sección corresponde a: Entrega 6 (Fecha de entrega: 31/10/2021).</p>
       <hr>
       <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+    </div>
+  </div>-->
+  <div>
+    <div id="datos">
+      <input type="text" name="nombre" id="nombre" placeholder="Nombre">
+      <input type="text" name="apellido" id="apellido" placeholder="Apellido">
+      <br>
+      <input type="number" name="edad" id="edad" placeholder="Edad">
+      <br>
+      <input type="email" name="correo" id="correo" placeholder="Correo">
+      <br>
+      <input type="tel" name="telefono" id="telefono" placeholder="Teléfono">
+      <br>
+      <button onclick="actualizar()">Actualizar</button>
     </div>
   </div>
   <footer class="text-muted bg-light">

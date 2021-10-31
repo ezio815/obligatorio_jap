@@ -180,3 +180,18 @@ a.custom-card:hover {
   padding: 15px;
   margin: auto;
 }
+
+.sinDecoracion, .sinDecoracion:hover {
+  color: #495057;
+  text-decoration: none;
+}
+
+.pulsable {
+  border: solid rgba(0,0,0,.125) 1px;
+  height: 100%;
+}
+
+.pulsable:hover {
+  color: #212529;
+  background-color: #e9ecef;
+}

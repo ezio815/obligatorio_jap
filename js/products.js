@@ -10,12 +10,13 @@ const showProductsList = () => {
             product.description.toLowerCase().includes(search.toLowerCase())))) {
 
             htmlContentToAppend += `
-            <a href="product-info.html" class="list-group-item list-group-item-action">
-                <div class="row">
-                    <div class="col-3">
+            <div class="col-sm-12 col-md-6 col-lg-3">
+                <a href="product-info.html" class="sinDecoracion">
+                <div class="pulsable">
+                    <div>
                         <img src="${product.imgSrc}" alt="${product.description}" class="img-thumbnail">
                     </div>
-                    <div class="col">
+                    <div class="p-2">
                         <div class="d-flex w-100 justify-content-between">
                             <h4 class="mb-1">${product.name}</h4>
                             <small class="text-muted">${product.soldCount} vendidos</small>
@@ -23,8 +24,9 @@ const showProductsList = () => {
                         <p class="mb-1">${product.description}</p>
                         <h5 class="mb-1"><b>${product.currency}</b> ${product.cost}</h5>
                     </div>
-                </div>
-            </a>
+                    </div>
+                </a>
+            </div>
             `
         }
 
