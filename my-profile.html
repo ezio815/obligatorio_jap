@@ -63,40 +63,43 @@
       </ul>
     </div>
   </nav>
-  <div>
+  <div class="container mt-2">
     <div class="row">
       <div class="col-6">
-        <img src="" alt="Imagen de perfil" class="float-right" height="100%" id="imagen">
+        <div class="float-right">
+          <img src="img/avatar.png" alt="Imagen de perfil" height="145px" id="avatar" class="float-right mr-5"><br>
+          <input type="file" id="archivos" style="width:100%" class="mt-2 btn-lg">
+        </div>
       </div>
       <div class="col-6">
-        <table class="float-left">
+        <table>
           <tbody>
             <tr>
               <td><label for="nombre" class="mr-2">Nombre:</label></td>
-              <td><input type="text" name="nombre" id="nombre" placeholder="Nombre"></td>
+              <td><input type="text" name="nombre" id="nombre" class="form-control text-primary"></td>
             </tr>
             <tr>
               <td><label for="apellido" class="mr-2">Apellido:</label></td>
-              <td><input type="text" name="apellido" id="apellido"></td>
+              <td><input type="text" name="apellido" id="apellido" class="form-control text-primary"></td>
             </tr>
             <tr>
               <td><label for="edad" class="mr-2">Edad:</label></td>
-              <td><input type="number" name="edad" id="edad"></td>
+              <td><input type="number" name="edad" id="edad" class="form-control text-primary"></td>
             </tr>
             <tr>
               <td><label for="correo" class="mr-2">Correo:</label></td>
-              <td><input type="email" name="correo" id="correo"></td>
+              <td><input type="email" name="correo" id="correo" class="form-control text-primary"></td>
             </tr>
             <tr>
               <td><label for="telefono" class="mr-2">Teléfono:</label></td>
-              <td><input type="tel" name="telefono" id="telefono"></td>
+              <td><input type="tel" name="telefono" id="telefono" class="form-control text-primary"></td>
             </tr>
           </tbody>
         </table>  
       </div>
     </div>
     <br>
-    <button onclick="actualizar()" class="btn-primary btn-lg ml-2 mt-2">Actualizar</button>
+    <button onclick="actualizar()" class="btn-primary btn-lg mt-2">Actualizar</button>
   </div>
   <footer class="text-muted bg-light">
     <div class="container">
@@ -104,12 +107,12 @@
       <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
     </div>
   </footer>
-  <div class="alert fade alert-success" role="alert" id="alertResult">
+  <!--<div class="alert fade alert-success" role="alert" id="alertResult">
     <span id="resultSpan"></span>
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
-  </div>
+  </div>-->
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>

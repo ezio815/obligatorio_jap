@@ -81,7 +81,8 @@ document.addEventListener("DOMContentLoaded", () => {
   else
   {
     login.addEventListener("click", () => {
-      localStorage.setItem("origen", location.href)
+      localStorage.setItem("origen", location.href);
     });
+    if (/my-profile\.html/.test(location.href) || /cart\.html/.test(location.href)) location.href = "index.html";
   }
 });
