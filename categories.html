@@ -16,21 +16,32 @@
     <meta name="google-signin-client_id" content="816860176303-d5iuu3lrkbrrbmvhfj4in3cvu71nccd2.apps.googleusercontent.com">
   </head>
   <body>
-    <nav class="site-header sticky-top py-1 bg-dark">
-      <div class="container d-flex flex-column flex-md-row justify-content-between">
-        <a class="py-2 d-none d-md-inline-block" href="index.html">Inicio</a>
-        <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
-        <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
-        <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
-        <div class="dropdown">
-          <a class="py-2 d-none d-md-inline-block dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">Usuario</a>
-          <div class="dropdown-menu" id="div-menu" aria-labelledby="dropdownMenuLink">
-            <a href="login.html" class="dropdown-item" id="log in">Iniciar Sesión</a>
-            <a href="cart.html" class="dropdown-item disabled text-muted" aria-disabled="true">Mi carrito</a>
-            <a href="my-profile.html" class="dropdown-item disabled text-muted" aria-disabled="true">Ver mi perfil</a>
-            <a href="#" class="dropdown-item disabled text-muted" aria-disabled="true" id="log out">Cerrar sesión</a>
-          </div>
-        </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
+      <a class="navbar-brand" href="index.html"><b class="text-warning">e</b>Mercado</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="categories.html">Categorías</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="products.html">Productos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="sell.html">Vender</a>
+          </li>
+          <li class="nav-item dropdown">
+              <a class="dropdown-toggle nav-link" id="dropdownMenuLink" data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">Usuario</a>
+              <div class="dropdown-menu" id="div-menu" aria-labelledby="dropdownMenuLink">
+                <a href="login.html" class="dropdown-item" id="log in">Iniciar Sesión</a>
+                <a href="cart.html" class="dropdown-item disabled text-muted" aria-disabled="true">Mi carrito</a>
+                <a href="my-profile.html" class="dropdown-item disabled text-muted" aria-disabled="true">Ver mi perfil</a>
+                <a href="#" class="dropdown-item disabled text-muted" aria-disabled="true" id="log out">Cerrar sesión</a>
+              </div>
+          </li>
+        </ul>
       </div>
     </nav>
     <main role="main" class="pb-5">
