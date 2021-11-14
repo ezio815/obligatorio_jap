@@ -7,12 +7,16 @@ document.addEventListener("DOMContentLoaded", () => {
             showItems(resultObj.data.articles);
         }
     });
+    document.querySelectorAll("#modalFormasDePago > div > div > div.modal-body > div > div:nth-child(5) > div > div > button").forEach(element => {
+        element.addEventListener("click", () => {
+            document.querySelector("#dropdownPais").innerText = element.innerText;
+        });
+    });
 });
 
 const showItems = (array) => {
     let htmlContentToAppend = "";
     let total = 0;
-    console.log(array)
     for (let i = 0; i < array.length; i++) {
         let item = array[i];
         let subtotal = item.unitCost * item.count;
