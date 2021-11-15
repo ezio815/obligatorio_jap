@@ -47,7 +47,7 @@ const showItems = (array) => {
         </div>
         <div class="w-100"></div>
 `;*/
-        `<tr class="dividido">
+        `<tr class="dividido" id="item${i}">
             <td>
                 <img src="${item.src}" alt="${item.name}" width=100>
             </td>
@@ -64,8 +64,12 @@ const showItems = (array) => {
                 <b>${item.currency}</b> <span></span> <br> Envío
             </td>
             <td>
-                <label for="cantidad${i}">Cantidad: </label>
-                <input type="number" value=${item.count} onchange="update()" class="cantidad" id="cantidad${i}" min=0>
+                <input type="number" value=${item.count} onchange="update()" class="cantidad form-control text-primary" id="cantidad${i}" min="1" placeholder="Cantidad" onkeyup="verificar('cantidad${i}')" onclick="verificar('cantidad${i}')">
+            </td>
+            <td>
+                <button type="button" onclick="eliminar('item${i}')" class="btn btn-danger">
+                Eliminar
+                </button>
             </td>
         </tr>
         `
@@ -139,6 +143,17 @@ const verificar2 = () => {
         alert("Faltan campos por completar");
     }
     else {
-        alert("Su compra se ha realizado con éxito");
+        let bien = true;
+        let cantidades = document.getElementsByClassName("cantidad")
+        for (let i = 0; i < cantidades.length; i++) {
+            if (!cantidades[i].value) bien = false;
+        }
+        if (bien) alert("Su compra se ha realizado con éxito");
+        else alert("No puedes tener cantidades sin valor");
     }
+}
+
+const eliminar = (id) => {
+    document.getElementById(id).remove();
+    update();
 }
