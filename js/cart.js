@@ -10,11 +10,13 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll("#lDropdownPais > button").forEach(element => {
         element.addEventListener("click", () => {
             document.querySelector("#dropdownPais").innerText = element.innerText;
+            document.getElementsByName("pais")[0].value = element.innerText;
         });
     });
     document.getElementsByName("rEnvio").forEach(ele => {
         ele.addEventListener("click", update);
-    })
+    });
+    if (/localhost/.test(SERVER) || /127.0.0.1/.test(SERVER)) document.getElementById("formulario").setAttribute("action", `${SERVER}/cart/buy.json`);
 });
 
 const showItems = (array) => {
@@ -25,29 +27,11 @@ const showItems = (array) => {
         let subtotal = item.unitCost * item.count;
         if (item.currency === "USD") total += subtotal * 40;
         else total += subtotal;
-        htmlContentToAppend += /*`
-        <div class="col-2">
-            <img src="${item.src}" alt="${item.name}" width=100>
-        </div>
-        <div class="col-2">
-            <h5>${item.name}</h5>
-        </div>
-        <div class="col-2 precio-u">
-            <b>${item.currency}</b> <span>${item.unitCost}</span> <br> Por unidad
-        </div>
-        <div class="col-2 precio-s">
-            <b>${item.currency}</b> <span>${subtotal}</span> <br> Subtotal
-        </div>
-        <div class="col-2 precioEnvio">
-            <b>${item.currency}</b> <span></span> <br> Envío
-        </div>
-        <div class="col-2">
-            <label for="cantidad${i}">Cantidad: </label>
-                <input type="number" value=${item.count} onchange="update()" class="cantidad" id="cantidad${i}" min=0>
-        </div>
-        <div class="w-100"></div>
-`;*/
-        `<tr class="dividido" id="item${i}">
+        htmlContentToAppend += `
+        <input type="hidden" name="item${i}_unitario" value="${item.unitCost}" required>
+        <input type="hidden" name="item${i}_subtotal" value="${subtotal}" required>
+        <input type="hidden" name="item${i}_envio" value="" required>
+        <tr class="dividido" id="item${i}">
             <td>
                 <img src="${item.src}" alt="${item.name}" width=100>
             </td>
@@ -64,7 +48,7 @@ const showItems = (array) => {
                 <b>${item.currency}</b> <span></span> <br> Envío
             </td>
             <td>
-                <input type="number" value=${item.count} onchange="update()" class="cantidad form-control text-primary" id="cantidad${i}" min="1" placeholder="Cantidad" onkeyup="verificar('cantidad${i}')" onclick="verificar('cantidad${i}')">
+                <input type="number" value=${item.count} onchange="update()" class="cantidad form-control text-primary" id="cantidad${i}" min="1" placeholder="Cantidad" onkeyup="verificar('cantidad${i}')" onclick="verificar('cantidad${i}')" name="item${i}_cantidad" required>
             </td>
             <td>
                 <button type="button" onclick="eliminar('item${i}')" class="btn btn-danger">
@@ -89,7 +73,7 @@ function update() {
     let cantidad = document.getElementsByClassName("cantidad");
     let envios = document.getElementsByClassName("precioEnvio");
     let porcentaje;
-    document.getElementsByName("rEnvio").forEach(ele => {
+    document.getElementsByName("tipoEnvio").forEach(ele => {
         if (ele.checked) {
             porcentaje = ele.value;
         }
@@ -103,6 +87,7 @@ function update() {
         
         let envio = envios[i].querySelector("span");
         envio.innerHTML = porcentaje * subtotal.innerHTML / 100;
+        document.getElementsByName(`item${i}_envio`)[0].value = parseInt(envio.innerHTML);
 
         if (envios[i].querySelector("b").innerHTML === "USD") {
             envioTotal += parseInt(envio.innerHTML) * 40;
@@ -117,10 +102,11 @@ function update() {
     document.getElementById("envio").innerHTML = `
     <h5>Envío: <b>UYU</b> ${envioTotal}</h5>
     `;
-    total +=
+    document.getElementsByName("envio")[0].value = envioTotal;
     document.getElementById("total").innerHTML = `
     <h4>Total: <b>UYU</b> ${total}</h4>
     `;
+    document.getElementsByName("total")[0].value = total;
 }
 
 function verificar (id) {
@@ -148,8 +134,13 @@ const verificar2 = () => {
         for (let i = 0; i < cantidades.length; i++) {
             if (!cantidades[i].value) bien = false;
         }
-        if (bien) alert("Su compra se ha realizado con éxito");
-        else alert("No puedes tener cantidades sin valor");
+        if (bien) {
+            if (document.getElementById("formulario").getAttribute("action")) document.getElementById("formulario").submit();
+            else alert("¡Compra realizada con éxito!");
+        }
+        else {
+            alert("No puedes tener cantidades sin valor");
+        }
     }
 }
 

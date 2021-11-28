@@ -1,11 +1,21 @@
-const CATEGORIES_URL = "https://japdevdep.github.io/ecommerce-api/category/all.json";
-const PUBLISH_PRODUCT_URL = "https://japdevdep.github.io/ecommerce-api/product/publish.json";
-const CATEGORY_INFO_URL = "https://japdevdep.github.io/ecommerce-api/category/1234.json";
-const PRODUCTS_URL = "https://japdevdep.github.io/ecommerce-api/product/all.json";
-const PRODUCT_INFO_URL = "https://japdevdep.github.io/ecommerce-api/product/5678.json";
-const PRODUCT_INFO_COMMENTS_URL = "https://japdevdep.github.io/ecommerce-api/product/5678-comments.json";
-const CART_INFO_URL = "https://japdevdep.github.io/ecommerce-api/cart/987.json";
-const CART_BUY_URL = "https://japdevdep.github.io/ecommerce-api/cart/buy.json";
+const SERVER = //"http://localhost:8000";
+"https://japdevdep.github.io/ecommerce-api";
+
+const CATEGORIES_URL = `${SERVER}/category/all.json`;
+
+const PUBLISH_PRODUCT_URL = `${SERVER}/product/publish.json`;
+
+const CATEGORY_INFO_URL = `${SERVER}/category/1234.json`;
+
+const PRODUCTS_URL = `${SERVER}/product/all.json`;
+
+const PRODUCT_INFO_URL = `${SERVER}/product/5678.json`;
+
+const PRODUCT_INFO_COMMENTS_URL = `${SERVER}/product/5678-comments.json`;
+
+const CART_INFO_URL = `${SERVER}/cart/987.json`;
+
+const CART_BUY_URL = `${SERVER}/cart/buy.json`;
 
 let user = null;
 
@@ -60,17 +70,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     login.classList.add("disabled", "text-primary");
     login.setAttribute("aria-disabled", true);
-    
-    /*login.addEventListener("mouseover", () => {
-      login.textContent = "¿Cerrar Sesión?"
-      login.classList.remove("text-primary");
-      login.classList.add("text-warning");
-    });
-    login.addEventListener("mouseout", () => {
-      login.textContent = user;
-      login.classList.remove("text-warning")
-      login.classList.add("text-primary");
-    });*/
     document.getElementById("log out").addEventListener("click", () => {
       //signOut(); //No logré que funcionara el logout de google
       localStorage.removeItem("user");

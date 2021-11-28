@@ -64,93 +64,87 @@
     </div>
   </nav>
   <div class="limitedScreen">
-    <!--<div class="row" id="contenedor">
-    </div>-->
-    <table style="width:100%">
-      <tbody id="container">
-      </tbody>
-    </table>
-    <br>
-    <button type="button" class="btn-secondary mb-3 btn" data-toggle="modal" data-target="#modalFormasDePago">Más Detalles</button>
-    <div id="envio"><h5>Envío: </h5></div>
-    <br>
-    <div id="total"></div>
-    <br>
-    <div class="modal" tabindex="-1" id="modalFormasDePago" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Pago y envío</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <h5>Método de envío</h5>
-            <div class="row text-center">
-                <label for="re0" class="col form-control">
-                  Premium
-                  <input type="radio" name="rEnvio" id="re0" value="15" checked>
-                </label>
-                <label for="re1" class="col form-control">
-                  Express
-                  <input type="radio" name="rEnvio" id="re1" value="7">
-                </label>
-                <label for="re2" class="col form-control">
-                  Standard
-                  <input type="radio" name="rEnvio" id="re2" value="5">
-                </label>
-              <div class="w-100"></div>
-              <div class="col">
-                <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle btn-block" id="dropdownPais" data-toggle="dropdown">Uruguay</button>
-                  <div id="lDropdownPais" class="dropdown-menu" aria-labelledby="dropdownPais">
-                    <button type="button" class="dropdown-item">Argentina</button>
-                    <button type="button" class="dropdown-item">Brasil</button>
-                    <button type="button" class="dropdown-item">Cuba</button>
-                    <button type="button" class="dropdown-item">Uruguay</button>
-                    <button type="button" class="dropdown-item">Venezuela</button>
+    <form id="formulario" method="post">
+      <table style="width:100%">
+        <tbody id="container">
+        </tbody>
+      </table>
+      <br>
+      <button type="button" class="btn-secondary mb-3 btn" data-toggle="modal" data-target="#modalFormasDePago">Más Detalles</button>
+      <input type="hidden" name="envio">
+      <div id="envio"><h5>Envío: </h5></div>
+      <br>
+      <input type="hidden" name="total">
+      <div id="total"></div>
+      <br>
+      <div class="modal" tabindex="-1" id="modalFormasDePago" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Pago y envío</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <h5>Método de envío</h5>
+              <div class="row text-center">
+                  <label for="re0" class="col form-control">
+                    Premium
+                    <input type="radio" name="tipoEnvio" id="re0" value="15" checked>
+                  </label>
+                  <label for="re1" class="col form-control">
+                    Express
+                    <input type="radio" name="tipoEnvio" id="re1" value="7">
+                  </label>
+                  <label for="re2" class="col form-control">
+                    Standard
+                    <input type="radio" name="tipoEnvio" id="re2" value="5">
+                  </label>
+                <div class="w-100"></div>
+                <div class="col">
+                  <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle btn-block" id="dropdownPais" data-toggle="dropdown">Uruguay</button>
+                    <input type="hidden" name="pais" value="Uruguay" required>
+                    <div id="lDropdownPais" class="dropdown-menu" aria-labelledby="dropdownPais">
+                      <button type="button" class="dropdown-item">Argentina</button>
+                      <button type="button" class="dropdown-item">Brasil</button>
+                      <button type="button" class="dropdown-item">Cuba</button>
+                      <button type="button" class="dropdown-item">Uruguay</button>
+                      <button type="button" class="dropdown-item">Venezuela</button>
+                    </div>
                   </div>
                 </div>
+                <div class="col">
+                  <input type="text" name="calle" id="calle" class="form-control text-primary" placeholder="Calle" onkeyup="verificar('calle')" required>
+                  <br>
+                  <input type="number" name="numero" id="numero" class="form-control text-primary" placeholder="Número" onkeyup="verificar('numero')" onclick="verificar('numero')" min="1" required>
+                  <br>
+                  <input type="text" name="esquina" id="esquina" class="form-control text-primary" placeholder="Esquina" onchange="verificar('esquina')" required>
+                </div>
               </div>
-              <div class="col">
-                <input type="text" name="" id="calle" class="form-control text-primary" placeholder="Calle" onkeyup="verificar('calle')">
-                <br>
-                <input type="number" name="" id="numero" class="form-control text-primary" placeholder="Número" onkeyup="verificar('numero')" onclick="verificar('numero')" min="1">
-                <br>
-                <input type="text" name="" id="esquina" class="form-control text-primary" placeholder="Esquina" onchange="verificar('esquina')">
+              <hr>
+              <h5>Forma de pago</h5>
+              <div class="row">
+                <label for="rp0" class="form-control text-center col">
+                  Tarjeta de crédito
+                  <input type="radio" name="tPago" id="rp0" value="0" checked>
+                </label>
+                <label for="rp1" class="form-control text-center col">
+                  Transferencia bancaria
+                  <input type="radio" name="tPago" id="rp1" value="1">
+                </label>
               </div>
             </div>
-            <hr>
-            <h5>Forma de pago</h5>
-            <div class="row">
-              <label for="rp0" class="form-control text-center col">
-                Tarjeta de crédito
-                <input type="radio" name="rPago" id="rp0" checked>
-              </label>
-              <label for="rp1" class="form-control text-center col">
-                Transferencia bancaria
-                <input type="radio" name="rPago" id="rp1">
-              </label>
-              
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Aceptar</button>
             </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Aceptar</button>
           </div>
         </div>
       </div>
-    </div>
-    <button class="btn-primary btn-lg col-3" onclick="verificar2()">Comprar</button>
+      <button type="button" class="btn-primary btn-lg col-3" onclick="verificar2()">Comprar</button>
+    </form>
   </div>
-  <!--<div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 5 (Fecha de entrega: 17/10/2021) y Entrega 7 (Fecha de entrega: 14/11/2021).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
-    </div>
-  </div>-->
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
